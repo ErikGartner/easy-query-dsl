@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["easyQuery"] = factory();
+		exports["EasyQuery"] = factory();
 	else
-		root["easyQuery"] = factory();
+		root["EasyQuery"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -204,6 +204,8 @@ var EasyQuery = function () {
 
       if (selectors.length == 1) {
         return selectors[0];
+      } else if (selectors.length == 0) {
+        return {};
       } else {
         return { $and: selectors };
       }
