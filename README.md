@@ -132,17 +132,14 @@ key1: value1  key2: value2 -> {$and: [{key1: value1}, {key2: value2}]
 #### String type:
 Fuzzy: `key: value -> {key: $regex{ pattern: .*value.*} }`
 
-Given number type:
+#### Number type:
 ```
 key: >value -> key: {$gt: value}
 key: <=value -> key: {$lte: value}
-key: !value > key: {$ne: value}
+key: !value -> key: {$ne: value}
 ```
 
-Given fuzzy option:
-
-
-Given text type:
+#### Text type:
 ```
 key: value -> {$text: {$search: value, $caseSensitive: false, $diacriticSensitive: false}}
 ```
