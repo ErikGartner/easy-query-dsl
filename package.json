@@ -1,6 +1,6 @@
 {
   "name": "easy-query-dsl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A dsl for turning string into Mongo selectors.",
   "main": "dist/easy-query-dsl.js",
   "scripts": {

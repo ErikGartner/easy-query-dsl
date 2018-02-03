@@ -123,7 +123,7 @@ describe('EasyQuery', () => {
         ]
       };
 
-      let query = 'harde cap: >5 cl: ventrue';
+      let query = '';
       let selector = EasyQuery._parse(query, options);
     });
 
