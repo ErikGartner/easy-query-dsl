@@ -52,6 +52,6 @@
   },
   "babelBoilerplateOptions": {
     "entryFileName": "easy-query-dsl.js",
-    "mainVarName": "easyQuery"
+    "mainVarName": "EasyQuery"
   }
 }
