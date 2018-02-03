@@ -6,12 +6,12 @@ query language usable by end users without any programming knowledge.
 
 For example the search string: `name: "John Appleseed" age: >20` would yield a selector:
 ```javascript
-{$and: [{name: John Appleseed}, {age: {$gt: 20}}]}
+{$and: [{name: "John Appleseed"}, {age: {$gt: 20}}]}
 ```
 
 The simple format can be explained quickly to the users as:
 
-- Write `key: value` or `key: "value with space"``
+- Write `key: value` or `key: "value with space"`
 - Either `value1` or `value2`: `key: value1;value2`
 - Both `value1` and `value2`: `key: value1 key: value2`
 - Less than `key: <5` etc.
