@@ -359,9 +359,9 @@ var EasyQuery = function () {
             value = value.substring(1);
           }
 
-          value = Number(value);
-          if (isNaN(value)) {
-            continue;
+          var tryValue = Number(value);
+          if (!isNaN(tryValue)) {
+            value = tryValue;
           }
 
           /* Create selector */

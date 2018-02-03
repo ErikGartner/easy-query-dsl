@@ -166,9 +166,9 @@ class EasyQuery {
         value = value.substring(1);
       }
 
-      value = Number(value);
-      if (isNaN(value)) {
-        continue;
+      let tryValue = Number(value);
+      if (!isNaN(tryValue)) {
+        value = tryValue;
       }
 
       /* Create selector */
