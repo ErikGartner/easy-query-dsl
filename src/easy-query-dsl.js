@@ -4,13 +4,49 @@ class EasyQuery {
     this.options = options;
   }
 
-  static _parse(queryString, options) {
+  parse(queryString) {
+    return EasyQuery._parse(queryString, this.options);
+  }
 
+  static _parse(query, options) {
+
+    let keys = [];
     /* Go over every keyword */
-    for (let key of options.keys.forEach) {
-      EasyQuery._stringToKeyValues(queryString, key);
+    for (let key of options.keys) {
+      let {matches, queryString} = EasyQuery._stringToKeyValues(query, key);
+      query = queryString;
+      if (Object.keys(matches).length > 0) {
+        keys.push({key: key, matches: matches});
+      }
     }
 
+    /* Finally run default over the remaining string */
+    query = query.trim();
+    if (query.length > 0) {
+      keys.push({
+        key: options.default,
+        matches: [{
+          field: options.default.field, values: [query]}
+        ]}
+      );
+    }
+
+    /* Convert key -> values to selectors */
+    let selectors = [];
+    for (let km of keys) {
+      for (let match of km.matches) {
+        let selector = EasyQuery._keyValueToSelector(match, km.key);
+        if (Object.keys(selector).length > 0) {
+          selectors.push(selector);
+        }
+      }
+    }
+
+    if(selectors.length == 1) {
+      return selectors[0];
+    } else {
+      return {$and: selectors};
+    }
   }
 
   static _stringToKeyValues(queryString, key) {
@@ -19,8 +55,11 @@ class EasyQuery {
 
     let matches = [];
 
+    /* Map alias a to non-capturing groups */
+    let names =  key.alias.map(a => `(?:${a})`);
+
     /* Create regex list of the different key names */
-    let names = key.alias.join('|');
+    names = key.alias.join('|');
 
     /* Regex to get the key value pairs, allow either quoted or non-quoted values. */
     let regex = new RegExp(`(?:\\s*(?:${names}):\\s?"([^"]*)"\\s*|\\s*(?:${names}):\\s?([^\\s]*)\\s*)`, 'gi');
@@ -53,7 +92,7 @@ class EasyQuery {
 
   static _keyValueToSelector(keyValue, key) {
 
-    switch (key.option.type) {
+    switch (key.type) {
 
       case 'number':
         return EasyQuery._numberKeyValueToSelector(keyValue, key);

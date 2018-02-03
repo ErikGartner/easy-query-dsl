@@ -92,4 +92,41 @@ describe('EasyQuery', () => {
 
   });
 
+  describe('_parse', () => {
+
+    it('should handle simple queries', () => {
+      let options = {
+        default: {
+          field: 'default',
+          type: 'text',
+          opts: {
+            caseSensitive: false,
+            diacriticSensitive: false,
+          }
+        },
+        keys: [
+          {
+            field: 'capacity',
+            alias: ['cap'],
+            type: 'number',
+            opts: {},
+          },
+          {
+            field: 'clan',
+            alias: ['clan', 'cl'],
+            type: 'string',
+            opts: {
+              caseSensitive: false,
+              fuzzy: true,
+            }
+          }
+        ]
+      };
+
+      let query = 'harde cap: >5 cl: ventrue';
+      let selector = EasyQuery._parse(query, options);
+    });
+
+  });
+
 });
