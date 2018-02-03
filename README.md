@@ -12,10 +12,10 @@ Options::
 {
   default: {
     field: 'field_name',
-    type: 'string',
+    type: 'text',
     opts: {
       caseSensitive: false,
-      fuzzy: true,
+      diacriticSensitive: false,
     }
   }
   keys: [
@@ -37,7 +37,7 @@ String type:
 ```
 key: value -> {key: value}
 key: "value with spaces" -> {key: "value with spaces"}
-key: value1; value2 -> {$or: [{key: value1}, {key: value2}]
+key: value1;value2 -> {$or: [{key: value1}, {key: value2}]
 key: value1  key: value2 -> {$and: [{key: value1}, {key: value2}]
 key1: value1  key2: value2 -> {$and: [{key1: value1}, {key2: value2}]
 ```
@@ -47,7 +47,7 @@ Given number type:
 key: >value > key: {$gt: value}
 ```
 
-Given fuzzy type:
+Given fuzzy option:
 ```
 key: value -> {key: .*value.*}
 ```
