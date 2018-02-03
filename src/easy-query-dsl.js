@@ -42,8 +42,10 @@ class EasyQuery {
       }
     }
 
-    if(selectors.length == 1) {
+    if (selectors.length == 1) {
       return selectors[0];
+    } else if (selectors.length == 0) {
+      return {};
     } else {
       return {$and: selectors};
     }
