@@ -1,5 +1,6 @@
 # Easy Query
 *A DSL for turning search strings into Mongo selectors.*
+
 [![npm](https://img.shields.io/npm/v/easy-query-dsl.svg)](https://www.npmjs.com/package/easy-query-dsl) 
 
 The motivation behind this tiny library is that I needed a super simple
